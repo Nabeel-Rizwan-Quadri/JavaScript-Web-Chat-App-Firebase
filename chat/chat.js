@@ -72,7 +72,7 @@ let displayData = () => {
 
                 let position = userId == user.userId ? 'd-flex justify-content-end mb-4' : 'd-flex justify-content-start mb-4'
 
-                let status = userId == user.uid ? 'status offline' : 'status online'
+                let status = userId == user.uid ? 'offline' : 'online'
 
                 htmldiv += `
                 <div class="${position}">
@@ -80,7 +80,7 @@ let displayData = () => {
                 <div class="${position}">
                     <div class="img_cont">
                         <img src="${user.userAvatar}" class="rounded-circle user_img_msg">
-                        <span class="online_icon" class="offline"></span>
+                        <span class="${status}" class="offline"></span>
                     </div>
                     <div class="msg_cotainer">
                     <h6>${user.userName}: </h6>

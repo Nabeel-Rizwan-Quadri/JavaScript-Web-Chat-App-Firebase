@@ -22,10 +22,10 @@
             <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
             <div class="action_menu">
                 <ul>
-                    <li onclick="logout()"><i class="fas fa-user-circle"></i> Log out</li>
+                    <li onclick="logout()"> Log out</li>
                     <!-- <li><i class="fas fa-users"></i> Add to close friends</li>
-              <li><i class="fas fa-plus"></i> Add to group</li>
-              <li><i class="fas fa-ban"></i> Block</li> -->
+                    <li><i class="fas fa-plus"></i> Add to group</li>
+                    <li><i class="fas fa-ban"></i> Block</li> -->
                 </ul>
             </div>
         </div>
@@ -35,11 +35,11 @@
         <div class="card-footer">
             <div class="input-group">
                 <div class="input-group-append">
-                    <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+                    <span class="input-group-text attach_btn"></span>
                 </div>
-                <textarea id="userInput" name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                <input id="userInput" name="" class="form-control type_msg" placeholder="Type your message..."></input>
                 <div class="input-group-append">
-                    <span onclick="submit()" class=" input-group-text send_btn "><i class="fas fa-location-arrow "></i></span>
+                    <button onclick="submit()" class=" input-group-text send_btn "><i class="fas fa-location-arrow "></i></button>
                 </div>
             </div>
         </div>
