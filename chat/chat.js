@@ -39,9 +39,8 @@ let displayData = () => {
     firebase.firestore().collection("Chats")
     .get()
     .then((querySnapshot) => {
-        
+        let htmldiv = ``
         querySnapshot.forEach((doc) => {
-            let htmldiv = ``
             // doc.data() is never undefined for query doc snapshots
 
             user = doc.data().messageInfo
@@ -49,13 +48,11 @@ let displayData = () => {
             console.log(user)
 
             let position = userId == user.uid ? 'left': 'right'
-            
+
             let status = userId == user.uid ? 'status offline': 'status online'
             
             let now = new Date()
             let time = now.toDateString()
-
-            
             
             htmldiv += `<div class="answer ${position}">
                 <div class="avatar">
@@ -69,7 +66,7 @@ let displayData = () => {
                 <div class="time">${time}</div>
               </div>`;
             
-            document.getElementById('chat-messages').innerHTML = htmldiv
+            document.getElementById('chat').innerHTML = htmldiv
         });
     })
     .catch((error) => {
