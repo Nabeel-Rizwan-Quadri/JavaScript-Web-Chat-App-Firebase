@@ -7,6 +7,17 @@ html {
     background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
 }
 
+.center {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.header {
+    background-color: black;
+    opacity: 0.5;
+    color: white;
+}
+
 .chat {
     margin-top: auto;
     margin-bottom: auto;
@@ -29,7 +40,7 @@ html {
 }
 
 .card-header {
-    border-radius: 15px 15px 0 0 !important;
+    border-radius: 25px 25px 0 0 !important;
     border-bottom: 0 !important;
 }
 
