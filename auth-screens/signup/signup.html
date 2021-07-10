@@ -1,0 +1,42 @@
+<head>
+    <link rel="stylesheet" href="signup.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
+<div class="container">
+    <div class="brand-logo"></div>
+    <div class="brand-title">SIGN UP</div>
+
+
+    <form onsubmit="signup(event)">
+        <div class="inputs">
+
+            <label for="username" class="form-label">Username </label>
+            <input type="text" id="username" placeholder="John Doe">
+
+            <label for="inputEmail" class="form-label">Email address</label>
+            <input type="email" id="inputEmail" aria-describedby="emailHelp" placeholder="example@test.com">
+
+
+            <label for="inputPassword" class="form-label">Password</label>
+            <input type="password" id="inputPassword" placeholder="Min 6 charaters long">
+
+            <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+            <input type="password" id="reInputPassword" placeholder="Min 6 charaters long">
+
+
+            <button type="submit">Submit</button>
+            <a href="../login/login.html">Have an account? Click Here To Login!</a>
+        </div>
+    </form>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+    <script src="../../firebase-config.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js"></script>
+      
+    <script src="signup.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</div>
