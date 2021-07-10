@@ -92,9 +92,7 @@ let displayData = () => {
                 document.getElementById('chat').innerHTML = htmldiv
             });
         })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
+
 
 }
 
