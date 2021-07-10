@@ -1,11 +1,5 @@
 let message, userId, userAvatar, userName
 
-$(document).ready(function() {
-    $('#action_menu_btn').click(function() {
-        $('.action_menu').toggle();
-    });
-});
-
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         console.log(user)
@@ -16,6 +10,12 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         location.href = '../auth-screens/login/login.html'
     }
+});
+
+$(document).ready(function() {
+    $('#action_menu_btn').click(function() {
+        $('.action_menu').toggle();
+    });
 });
 
 function submit() {
@@ -63,14 +63,15 @@ let displayData = () => {
 
                 let position = userId == user.userId ? 'd-flex justify-content-end mb-4' : 'd-flex justify-content-start mb-4'
 
-                let status = userId == user.uid ? 'status offline' : 'status online'
+                let status = userId == user.uid ? 'offline' : 'online'
 
                 htmldiv += `
                 <div class="${position}">
                 </div>
                 <div class="${position}">
-                    <div class="img_cont_msg">
+                    <div class="img_cont">
                         <img src="${user.userAvatar}" class="rounded-circle user_img_msg">
+                        <span class="${status}"></span>
                     </div>
                     <div class="msg_cotainer">
                     <h6>${user.userName}: </h6>

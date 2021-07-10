@@ -129,7 +129,7 @@ html {
     width: 70px;
 }
 
-.online_icon {
+.online {
     position: absolute;
     height: 15px;
     width: 15px;
@@ -141,7 +141,14 @@ html {
 }
 
 .offline {
-    background-color: #c23616 !important;
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    background-color: #c23616;
+    border-radius: 50%;
+    bottom: 0.2em;
+    right: 0.4em;
+    border: 1.5px solid white;
 }
 
 .user_info {
