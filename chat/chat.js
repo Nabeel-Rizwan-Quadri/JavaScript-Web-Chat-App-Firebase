@@ -47,7 +47,7 @@ function submit() {
 let displayData = () => {
 
     firebase.firestore().collection("chats")
-        .orderBy("createdOn", "desc")
+        // .orderBy("createdOn", "desc")
         .onSnapshot((querySnapshot) => {
             let htmldiv = ``
             querySnapshot
