@@ -47,8 +47,10 @@ function submit() {
 let displayData = () => {
 
     firebase.firestore().collection("chats")
-        .orderBy("createdOn").get().then((querySnapshot) => {
+        .orderBy("createdOn", "desc")
+        .onSnapshot((querySnapshot) => {
             let htmldiv = ``
+            querySnapshot
             querySnapshot.forEach((doc) => {
                 // doc.data() is never undefined for query doc snapshots
 
