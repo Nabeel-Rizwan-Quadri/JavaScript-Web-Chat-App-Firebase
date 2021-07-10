@@ -1,80 +1,91 @@
 let message, userId, userAvatar, userName
 
-firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            console.log(user)
-            userId = user.uid
-            userAvatar = user.photoURL
-            userName = user.displayName
-            console.log(userName)
-        } else {
-            location.href = '../auth-screens/login/login.html'        }
-      });
+$(document).ready(function() {
+    $('#action_menu_btn').click(function() {
+        $('.action_menu').toggle();
+    });
+});
 
-function submit(){
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        console.log(user)
+        userId = user.uid
+        userAvatar = user.photoURL
+        userName = user.displayName
+        console.log(userId)
+    } else {
+        location.href = '../auth-screens/login/login.html'
+    }
+});
+
+function submit() {
     let message = document.getElementById("userInput").value
+    let now = new Date()
+    let createdOn = now.toDateString()
 
     let messageInfo = {
         userId,
         userName,
         userAvatar,
         message,
+        createdOn
         // createdOn = firebase.firestore.FieldValue.serverTimestamp().
     }
 
     // console.log(messageInfo)
 
-    firebase.firestore().collection("Chats").add({messageInfo})
-    .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    });
+    firebase.firestore().collection("chats").add({ messageInfo })
+        .then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
 
-    }
+}
 
 let displayData = () => {
 
-    firebase.firestore().collection("Chats")
-    .get()
-    .then((querySnapshot) => {
-        let htmldiv = ``
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
+    firebase.firestore().collection("chats")
+        .orderBy("createdOn").get().then((querySnapshot) => {
+            let htmldiv = ``
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
 
-            user = doc.data().messageInfo
+                user = doc.data().messageInfo
 
-            console.log(user)
+                console.log(user)
 
-            let position = userId == user.uid ? 'left': 'right'
+                console.log(userId)
+                console.log(user.userId)
 
-            let status = userId == user.uid ? 'status offline': 'status online'
-            
-            let now = new Date()
-            let time = now.toDateString()
-            
-            htmldiv += `<div class="answer ${position}">
-                <div class="avatar">
-                  <img src="${user.userAvatar}" alt="${user.userName}">
-                  <div class="${status}"></div>
+                let position = userId == user.userId ? 'd-flex justify-content-end mb-4' : 'd-flex justify-content-start mb-4'
+
+                let status = userId == user.uid ? 'status offline' : 'status online'
+
+                htmldiv += `
+                <div class="${position}">
                 </div>
-                <div class="name">${user.userName}</div>
-                <div class="text">
-                  ${user.message}
-                </div>
-                <div class="time">${time}</div>
-              </div>`;
-            
-            document.getElementById('chat').innerHTML = htmldiv
+                <div class="${position}">
+                    <div class="img_cont_msg">
+                        <img src="${user.userAvatar}" class="rounded-circle user_img_msg">
+                    </div>
+                    <div class="msg_cotainer">
+                    <h6>${user.userName}: </h6>
+                        ${user.message}
+                    <span class="msg_time">${user.createdOn}</span>
+                    </div>     
+                </div>`;
+
+                document.getElementById('chat').innerHTML = htmldiv
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
         });
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
 
 }
-    
+
 displayData()
 
 let logout = () => {
