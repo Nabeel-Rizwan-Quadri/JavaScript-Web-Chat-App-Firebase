@@ -1,5 +1,5 @@
 let message, userId, userAvatar, userName
-let nameDiv = ``
+
 $(document).ready(function() {
     $('#action_menu_btn').click(function() {
         $('.action_menu').toggle();
@@ -13,18 +13,13 @@ firebase.auth().onAuthStateChanged((user) => {
         userAvatar = user.photoURL
         userName = user.displayName
 
-        nameDiv = `
-        
-        
-            <span >
+        let nameDiv = 
+        `<span >
                 <img src="${userAvatar}" class="rounded-circle user_img_msg">
             </span>
-
             <span >
             <h6>${userName}: </h6>
-            </span>
-              
-        `
+            </span>`
         document.getElementById("chatName").innerHTML = nameDiv
         console.log(userId)
     } else {
@@ -54,9 +49,7 @@ function submit() {
         createdOn
         // createdOn = firebase.firestore.FieldValue.serverTimestamp().
     }
-
     // console.log(messageInfo)
-
     firebase.firestore().collection("chats").add({ messageInfo })
         .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
@@ -64,13 +57,11 @@ function submit() {
         .catch((error) => {
             console.error("Error adding document: ", error);
         });
-
 }
 
 let displayData = () => {
 
-    firebase.firestore().collection("chats").orderBy("createdOn")
-        // .orderBy("createdOn", "desc")
+    firebase.firestore().collection("chats")
         .onSnapshot((querySnapshot) => {
             let htmldiv = ``
             querySnapshot
@@ -106,8 +97,6 @@ let displayData = () => {
                 document.getElementById('chat').innerHTML = htmldiv
             });
         })
-
-
 }
 
 displayData()
