@@ -1,4 +1,4 @@
-let message, userId, userAvatar, userName
+let message, userId, userAvatar, userName, createdOn
 
 $(document).ready(function() {
     $('#action_menu_btn').click(function() {
@@ -38,15 +38,12 @@ let logout = () => {
 
 function submit() {
     let message = document.getElementById("userInput").value
-    let now = new Date()
-    let createdOn = now.toDateString()
 
     let messageInfo = {
         userId,
         userName,
         userAvatar,
         message,
-        
         createdOn = firebase.firestore.FieldValue.serverTimestamp()
     }
     // console.log(messageInfo)
