@@ -46,8 +46,8 @@ function submit() {
         userName,
         userAvatar,
         message,
-        createdOn
-        // createdOn = firebase.firestore.FieldValue.serverTimestamp().
+        
+        createdOn = firebase.firestore.FieldValue.serverTimestamp().
     }
     // console.log(messageInfo)
     firebase.firestore().collection("chats").add({ messageInfo })
@@ -62,6 +62,7 @@ function submit() {
 let displayData = () => {
 
     firebase.firestore().collection("chats")
+        .orderBy("createdOn","asc")
         .onSnapshot((querySnapshot) => {
             let htmldiv = ``
             querySnapshot
@@ -90,7 +91,7 @@ let displayData = () => {
                     <div class="msg_cotainer">
                     <h6>${user.userName}: </h6>
                         ${user.message}
-                    <span class="msg_time">${user.createdOn}</span>
+                    <span class="msg_time">${user.createdOn.toDate().toLocaleTimeString()}</span>
                     </div>     
                 </div>`;
 
