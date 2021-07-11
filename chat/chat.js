@@ -38,13 +38,14 @@ let logout = () => {
 
 function submit() {
     let message = document.getElementById("userInput").value
+    createdOn = firebase.firestore.FieldValue.serverTimestamp()
 
     let messageInfo = {
         userId,
         userName,
         userAvatar,
         message,
-        createdOn = firebase.firestore.FieldValue.serverTimestamp()
+        createdOn
     }
     // console.log(messageInfo)
     firebase.firestore().collection("chats").add({ messageInfo })
