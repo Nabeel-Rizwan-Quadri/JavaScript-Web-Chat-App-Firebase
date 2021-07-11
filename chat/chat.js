@@ -47,7 +47,7 @@ function submit() {
         userAvatar,
         message,
         
-        createdOn = firebase.firestore.FieldValue.serverTimestamp().
+        createdOn = firebase.firestore.FieldValue.serverTimestamp()
     }
     // console.log(messageInfo)
     firebase.firestore().collection("chats").add({ messageInfo })
