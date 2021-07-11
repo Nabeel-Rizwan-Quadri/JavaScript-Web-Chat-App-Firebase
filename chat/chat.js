@@ -38,7 +38,10 @@ let logout = () => {
 
 function submit() {
     let message = document.getElementById("userInput").value
-    createdOn = firebase.firestore.FieldValue.serverTimestamp()
+    // createdOn = firebase.firestore.FieldValue.serverTimestamp()
+
+    console.log(createdOn)
+    createdOn = Date.now()
 
     let messageInfo = {
         userId,
@@ -60,7 +63,7 @@ function submit() {
 let displayData = () => {
 
     firebase.firestore().collection("chats")
-        .orderBy("createdOn","asc")
+        //.orderBy("userName","asc")
         .onSnapshot((querySnapshot) => {
             let htmldiv = ``
             querySnapshot
@@ -89,7 +92,7 @@ let displayData = () => {
                     <div class="msg_cotainer">
                     <h6>${user.userName}: </h6>
                         ${user.message}
-                    <span class="msg_time">${user.createdOn.toDate().toLocaleTimeString()}</span>
+                    <span class="msg_time">${user.createdOn}</span>
                     </div>     
                 </div>`;
 
