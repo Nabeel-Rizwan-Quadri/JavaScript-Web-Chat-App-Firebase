@@ -26,7 +26,7 @@ firebase.auth().onAuthStateChanged((user) => {
               
         `
         document.getElementById("chatName").innerHTML = nameDiv
-        console.log(userId)
+            // console.log(userId)
     } else {
         location.href = '../auth-screens/login/login.html'
     }
@@ -43,8 +43,7 @@ let logout = () => {
 
 function submit() {
     let message = document.getElementById("userInput").value
-    let now = new Date()
-    let createdOn = now.toDateString()
+    let createdOn = Date.now()
 
     let messageInfo = {
         userId,
@@ -70,7 +69,7 @@ function submit() {
 let displayData = () => {
 
     firebase.firestore().collection("chats")
-        // .orderBy("createdOn", "desc")
+        // .orderBy("createdOn")
         .onSnapshot((querySnapshot) => {
             let htmldiv = ``
             querySnapshot
@@ -79,10 +78,7 @@ let displayData = () => {
 
                 user = doc.data().messageInfo
 
-                console.log(user)
-
-                console.log(userId)
-                console.log(user.userId)
+                // console.log(user)
 
                 let position = userId == user.userId ? 'd-flex justify-content-end mb-4' : 'd-flex justify-content-start mb-4'
 
@@ -99,15 +95,13 @@ let displayData = () => {
                     <div class="msg_cotainer">
                     <h6>${user.userName}: </h6>
                         ${user.message}
-                    <span class="msg_time">${user.createdOn}</span>
+                    <span class="msg_time">${new Date(user.createdOn).toDateString()}</span>
                     </div>     
                 </div>`;
 
                 document.getElementById('chat').innerHTML = htmldiv
             });
         })
-
-
 }
 
 displayData()
