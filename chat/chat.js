@@ -54,6 +54,8 @@ function submit() {
         // createdOn = firebase.firestore.FieldValue.serverTimestamp().
     }
 
+    console.log(typeof(messageInfo))
+
     // console.log(messageInfo)
 
     firebase.firestore().collection("chats").add({ messageInfo })
@@ -69,7 +71,7 @@ function submit() {
 let displayData = () => {
 
     firebase.firestore().collection("chats")
-        // .orderBy("createdOn")
+        .orderBy("messageInfo.createdOn")
         .onSnapshot((querySnapshot) => {
             let htmldiv = ``
             querySnapshot
