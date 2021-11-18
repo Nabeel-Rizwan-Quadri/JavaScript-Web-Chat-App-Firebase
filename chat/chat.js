@@ -14,18 +14,18 @@ firebase.auth().onAuthStateChanged((user) => {
         userName = user.displayName
 
         nameDiv = `
-        
-        
+            <span >
+            <h6>${userName}</h6>
+            </span>
+        `
+
+        imgDiv = `
             <span >
                 <img src="${userAvatar}" class="rounded-circle user_img_msg">
             </span>
-
-            <span >
-            <h6>${userName}: </h6>
-            </span>
-              
         `
         document.getElementById("chatName").innerHTML = nameDiv
+        document.getElementById("chatImg").innerHTML = imgDiv
             // console.log(userId)
     } else {
         location.href = '../auth-screens/login/login.html'
@@ -38,10 +38,11 @@ let logout = () => {
         location.href = '../auth-screens/login/login.html'
     }).catch((error) => {
         // An error happened.
+        console.log(error.message)
     });
 }
 
-function submit() {
+async function submit() {
     let message = document.getElementById("userInput").value
     let createdOn = Date.now()
 
@@ -58,14 +59,14 @@ function submit() {
 
     // console.log(messageInfo)
 
-    firebase.firestore().collection("chats").add({ messageInfo })
+    await firebase.firestore().collection("chats").add({ messageInfo })
         .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
         })
         .catch((error) => {
             console.error("Error adding document: ", error);
         });
-
+    window.scrollTo(0,document.body.scrollHeight);
 }
 
 let displayData = () => {
@@ -76,31 +77,29 @@ let displayData = () => {
             let htmldiv = ``
             querySnapshot
             querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
 
                 user = doc.data().messageInfo
 
-                // console.log(user)
+                let condition = userId == user.userId ? true : false
 
-                let position = userId == user.userId ? 'd-flex justify-content-end mb-4' : 'd-flex justify-content-start mb-4'
-
-                let status = userId == user.uid ? 'offline' : 'online'
-
-                htmldiv += `
-                <div class="${position}">
-                </div>
-                <div class="${position}">
-                    <div class="img_cont">
-                        <img src="${user.userAvatar}" class="rounded-circle user_img_msg">
-                        <span class="${status}" class="offline"></span>
-                    </div>
-                    <div class="msg_cotainer">
-                    <h6>${user.userName}: </h6>
-                        ${user.message}
-                    <span class="msg_time">${new Date(user.createdOn).toDateString()}</span>
-                    </div>     
-                </div>`;
-
+                if(condition){
+                    htmldiv += `
+                    <div class="container darker">
+                    <h3>${user.userName}<h3/>
+                    <img src="${user.userAvatar}" alt="Avatar" class="right">
+                    <p>${user.message}</p>
+                    <span class="time-left">${Date(user.createdOn).slice(0, 21)}</span>
+                    </div>`;
+                }
+                else{
+                    htmldiv += `
+                    <div class="container">
+                    <h3>${user.userName}<h3/>
+                    <img src="${user.userAvatar}" alt="Avatar">
+                    <p>${user.message}</p>
+                    <span class="time-right">${Date(user.createdOn).slice(0, 21)}</span>
+                    </div>`;
+                }
                 document.getElementById('chat').innerHTML = htmldiv
             });
         })

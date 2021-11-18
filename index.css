@@ -21,22 +21,9 @@ body {
     padding: 20px;
 }
 
-.signup {
-    border-color: lightpink;
-    color: black;
-    padding: 4px 13px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.signup:hover {
-    background-color: lightpink;
-    color: white;
-}
-
 .login {
-    border-color: lightblue;
+    border-color: black;
+    background-color: burlywood;
     color: black;
     padding: 4px 13px;
     text-align: center;
@@ -45,6 +32,6 @@ body {
 }
 
 .login:hover {
-    background-color: lightblue;
-    color: white;
+    background-color: whitesmoke;
+    color: black;
 }

@@ -12,22 +12,22 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
 </head>
 
-<body>
-    <div class="body">
+<body >
+    <div class="content">
 
         <div class="header">
-            <div id="chatName"><i class="fas fa-users"></i> </div>
-            <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
-            <div class="action_menu">
-                <ul>
-                    <li onclick="logout()"> Log out</li>
-                </ul>
+            <div id="chatImg"><i class="fa fa-users"></i> </div>
+            <div class="dropdown">
+                <button id="chatName" class="dropbtn"></button>
+                <div class="dropdown-content">
+                    <button class="logout" onclick="logout()"> Log out</button>
+                </div>
             </div>
         </div>
 
-        <div id="chat"></div>
+        <div id="chat" class="chat"></div>
 
-        <div class="card-footer">
+        <div class="footer">
             <div class="input-group">
                 <div class="input-group-append">
                     <span class="input-group-text attach_btn"></span>
