@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chat</title>
+    <link href="chat.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+</head>
+
+<body >
+    <div class="content">
+
+        <div class="header">
+            <div id="chatImg"><i class="fa fa-users"></i> </div>
+            <div class="dropdown">
+                <button id="chatName" class="dropbtn"></button>
+                <div class="dropdown-content">
+                    <button class="logout" onclick="logout()"> Log out</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="chat" class="chat"></div>
+
+        <div class="footer">
+            <div class="input-group">
+                <div class="input-group-append">
+                    <span class="input-group-text attach_btn"></span>
+                </div>
+                <input id="userInput" name="" class="form-control type_msg" placeholder="Type your message..."></input>
+                <div class="input-group-append">
+                    <button onclick="submit()" class=" input-group-text send_btn "><i class="fas fa-location-arrow "></i></button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js "></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js "></script>
+    <script src="../firebase-config.js "></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-firestore.js "></script>
+
+    <script src='./chat.js'></script>
+</body>
+
+</html>
